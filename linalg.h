@@ -211,8 +211,8 @@ namespace linalg
     {
         T                           x;
         char _private[24];
-        constexpr                   vec()                               : x() {}
-        constexpr                   vec(const T & x_)                   : x(x_) {}
+        constexpr                   vec()                               : x(), _private() {}
+        constexpr                   vec(const T & x_)                   : x(x_), _private() {}
         // NOTE: vec<T,1> does NOT have a constructor from pointer, this can conflict with initializing its single element from zero
         template<class U>
         constexpr explicit          vec(const vec<U,1> & v)             : vec(static_cast<T>(v.x)) {}
@@ -226,8 +226,8 @@ namespace linalg
     {
         T                           x,y;
         char _private[16];
-        constexpr                   vec()                               : x(), y() {}
-        constexpr                   vec(const T & x_, const T & y_)     : x(x_), y(y_) {}
+        constexpr                   vec()                               : x(), y(), _private() {}
+        constexpr                   vec(const T & x_, const T & y_)     : x(x_), y(y_), _private() {}
         constexpr explicit          vec(const T & s)                    : vec(s, s) {}
         constexpr explicit          vec(const T * p)                    : vec(p[0], p[1]) {}
         template<class U>
@@ -242,9 +242,9 @@ namespace linalg
     {
         T                           x,y,z;
         char _private[20];
-        constexpr                   vec()                               : x(), y(), z() {}
+        constexpr                   vec()                               : x(), y(), z(), _private() {}
         constexpr                   vec(const T & x_, const T & y_,
-                                        const T & z_)                   : x(x_), y(y_), z(z_) {}
+                                        const T & z_)                   : x(x_), y(y_), z(z_), _private() {}
         constexpr                   vec(const vec<T,2> & xy,
                                         const T & z_)                   : vec(xy.x, xy.y, z_) {}
         constexpr explicit          vec(const T & s)                    : vec(s, s, s) {}
@@ -263,9 +263,9 @@ namespace linalg
     {
         T                           x,y,z,w;
         char _private[16];
-        constexpr                   vec()                               : x(), y(), z(), w() {}
+        constexpr                   vec()                               : x(), y(), z(), w(), _private() {}
         constexpr                   vec(const T & x_, const T & y_,
-                                        const T & z_, const T & w_)     : x(x_), y(y_), z(z_), w(w_) {}
+                                        const T & z_, const T & w_)     : x(x_), y(y_), z(z_), w(w_), _private() {}
         constexpr                   vec(const vec<T,2> & xy,
                                         const T & z_, const T & w_)     : vec(xy.x, xy.y, z_, w_) {}
         constexpr                   vec(const vec<T,3> & xyz,
