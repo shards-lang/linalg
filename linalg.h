@@ -207,7 +207,7 @@ namespace linalg
     }
 
     // Small, fixed-length vector type, consisting of exactly M elements of type T, and presumed to be a column-vector unless otherwise noted
-    template<class T> struct vec<T,1>
+    template<class T> struct alignas(16) vec<T,1>
     {
         T                           x;
         char _private[24];
@@ -222,7 +222,7 @@ namespace linalg
         template<class U, class=detail::conv_t<vec,U>> constexpr vec(const U & u) : vec(converter<vec,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,vec>> constexpr operator U () const { return converter<U,vec>{}(*this); }
     };
-    template<class T> struct vec<T,2>
+    template<class T> struct alignas(16) vec<T,2>
     {
         T                           x,y;
         char _private[16];
@@ -238,7 +238,7 @@ namespace linalg
         template<class U, class=detail::conv_t<vec,U>> constexpr vec(const U & u) : vec(converter<vec,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,vec>> constexpr operator U () const { return converter<U,vec>{}(*this); }
     };
-    template<class T> struct vec<T,3>
+    template<class T> struct alignas(16) vec<T,3>
     {
         T                           x,y,z;
         char _private[20];
@@ -259,7 +259,7 @@ namespace linalg
         template<class U, class=detail::conv_t<vec,U>> constexpr vec(const U & u) : vec(converter<vec,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,vec>> constexpr operator U () const { return converter<U,vec>{}(*this); }
     };
-    template<class T> struct vec<T,4>
+    template<class T> struct alignas(16) vec<T,4>
     {
         T                           x,y,z,w;
         char _private[16];
@@ -286,7 +286,7 @@ namespace linalg
     };
 
     // Small, fixed-size matrix type, consisting of exactly M rows and N columns of type T, stored in column-major order.
-    template<class T, int M> struct mat<T,M,1>
+    template<class T, int M> struct alignas(16) mat<T,M,1>
     {
         typedef vec<T,M>            V;
         V                           x;
@@ -303,7 +303,7 @@ namespace linalg
         template<class U, class=detail::conv_t<mat,U>> constexpr mat(const U & u) : mat(converter<mat,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,mat>> constexpr operator U () const { return converter<U,mat>{}(*this); }
     };
-    template<class T, int M> struct mat<T,M,2>
+    template<class T, int M> struct alignas(16) mat<T,M,2>
     {
         typedef vec<T,M>            V;
         V                           x,y;
@@ -320,7 +320,7 @@ namespace linalg
         template<class U, class=detail::conv_t<mat,U>> constexpr mat(const U & u) : mat(converter<mat,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,mat>> constexpr operator U () const { return converter<U,mat>{}(*this); }
     };
-    template<class T, int M> struct mat<T,M,3>
+    template<class T, int M> struct alignas(16) mat<T,M,3>
     {
         typedef vec<T,M>            V;
         V                           x,y,z;
@@ -338,7 +338,7 @@ namespace linalg
         template<class U, class=detail::conv_t<mat,U>> constexpr mat(const U & u) : mat(converter<mat,U>{}(u)) {}
         template<class U, class=detail::conv_t<U,mat>> constexpr operator U () const { return converter<U,mat>{}(*this); }
     };
-    template<class T, int M> struct mat<T,M,4>
+    template<class T, int M> struct alignas(16) mat<T,M,4>
     {
         typedef vec<T,M>            V;
         V                           x,y,z,w;
